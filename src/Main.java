@@ -17,10 +17,10 @@ public class Main {
 
 		Controller controller = new Controller(grid);
 		MouseListener mouseListener = new MouseListener(controller, window);
-//		KeyboardListener keyboardListener = new KeyboardListener(boardController);
+		KeyboardListener keyboardListener = new KeyboardListener(controller);
 
 		window.addMouseListener(mouseListener);
-//		window.addKeyListener(keyboardListener);
+		window.addKeyListener(keyboardListener);
 
 		controller.run();
 	}

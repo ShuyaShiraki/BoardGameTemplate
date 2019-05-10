@@ -15,12 +15,19 @@ public class Controller extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			this.repaint();
+//			this.repaint();
 		}
 	}
 
 	public void clickedBoard(int x, int y) {
 		this.board.putPiece(Color.RED, x, y);
+		this.repaint();
+	}
+
+
+	public void reset() {
+		this.board = new Board(this.width, this.height);
+		this.repaint();
 	}
 
 	private void repaint() {

@@ -10,7 +10,11 @@ public class KeyboardListener extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-//        switch (e.getKeyCode()) {
+        switch (e.getKeyCode()) {
+        	case 82:	// R キー
+        		this.controller.reset();
+        		break;
+
 //            case 37: // 左矢印
 //                this.controller.onKeyLeftPressed();
 //                break;
@@ -23,6 +27,6 @@ public class KeyboardListener extends KeyAdapter {
 //            case 40: // 下矢印
 //                this.controller.onKeyDownPressed();
 //                break;
-//        }
+        }
     }
 }
