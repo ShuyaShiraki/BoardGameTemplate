@@ -1,5 +1,6 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+
+import javax.swing.JPanel;
 
 public class Cell extends JPanel {
     public Cell() {

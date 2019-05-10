@@ -1,60 +1,28 @@
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.JPanel;
+public class Board extends Thread {
 
-public class Board extends JPanel {
+	private List<List<Piece>> pieces = new ArrayList<>();
 
-	static final int WIDTH = 1000;
-	static final int HEIGHT = 1000;
-	private int cols, rows;
-	private int side;
-	private int beginX, beginY, endX, endY;
-	int boardState[][];
-
-	Board(int cols, int rows) {
-		setPreferredSize(new Dimension(WIDTH,HEIGHT));
-		this.cols = cols;
-		this.rows = rows;
-		this.boardState = new int [cols][rows];
-		this.setSide(cols, rows);
-		this.setEdge();
-	}
-
-
-	private void setSide(int cols, int rows) {
-		int rangeX = WIDTH / cols;
-		int rangeY = HEIGHT / rows;
-		if (rangeX < rangeY) this.side = rangeX;
-		else this.side =  rangeY;
-	}
-
-
-	private void setEdge() {
-		this.beginX = 0;
-		this.beginY = 0;
-		this.endX = side * cols;
-		this.endY = side * rows;
-	}
-
-
-	// 画面描画
-	public void paintComponent(Graphics g) {
-        // 背景
-        g.setColor(Color.lightGray);
-        g.fillRect(0, 0, WIDTH, HEIGHT);
-        // 盤面描画
-        for (int i = 0; i <= this.cols; i++) {
-            int x = this.beginX + this.side * i;
-            g.setColor(Color.black);
-            g.drawLine(x, this.beginY, x, this.endY);
+	public Board(int width,int height) {
+        for (int i = 0; i < height; i++) {
+            List<Piece> list = new ArrayList<>(width);
+            for (int j = 0; j < width; j++) {
+                list.add(new Piece());
+            }
+            this.pieces.add(list);
         }
-        for (int j = 0; j <= this.rows; j++) {
-            int y = this.beginY + this.side * j;
-            g.setColor(Color.black);
-            g.drawLine(this.beginX, y, this.endX, y);
-        }
-    }
+	}
+
+
+	void putPiece(Color c, int x, int y){
+		this.pieces.get(y).get(x).setColor(c);
+	}
+
+	public Piece getPiece(int x, int y){
+		return this.pieces.get(y).get(x);
+	}
 
 }

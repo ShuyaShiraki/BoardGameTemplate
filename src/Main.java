@@ -1,18 +1,27 @@
-import java.awt.FlowLayout;
-
-import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 public class Main {
-
 	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
-        JFrame f = new JFrame();
-        f.getContentPane().setLayout(new FlowLayout());
-        f.getContentPane().add(new Board(3,3));
-        f.pack();
-        f.setResizable(false);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setVisible(true);
-	}
+		final int windowWidth = 500;
+		final int windwHeight = 500;
+		final int width = 3;
+		final int height = 3;
 
+		Window window = new Window(width, height);
+		Grid grid = new Grid(window);
+
+		window.setTitle("Board Game");
+		window.setSize(windowWidth, windwHeight);
+		window.setVisible(true);
+		window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+		Controller controller = new Controller(grid);
+		MouseListener mouseListener = new MouseListener(controller, window);
+//		KeyboardListener keyboardListener = new KeyboardListener(boardController);
+
+		window.addMouseListener(mouseListener);
+//		window.addKeyListener(keyboardListener);
+
+		controller.run();
+	}
 }

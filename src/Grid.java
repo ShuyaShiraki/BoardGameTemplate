@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Container;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,4 +43,8 @@ public class Grid {
 
         this.grid.get(y).get(x).changeColor(c);
     }
+
+    public int getWidth() {return this.width;}
+    public int getHeight() {return this.height;}
+
 }
